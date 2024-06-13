@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: black solid 1px;
+}
+tr {
+    width: 50%;
+    background-color: #d83e3e;
+}
+td {
+    height: 100vh;
+    padding: 5px;
+    text-align: center;
+    border-collapse: collapse;
+}
+#cel1 {
+    background-color: rgb(247, 210, 91);
+    color: rgb(245, 234, 204);
+}
+#cel2 {
+    background-color:  rgb(245, 234, 204);
+    color:rgb(247, 210, 91);
+}
