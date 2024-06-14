@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explode this balloon</title>
+    <style>
+    .balao {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .balao:hover {
+        width: 195px;
+        height: 195px;
+    }
+
+    .balao:active {
+        transform: scale(1.05);
+    }
+    </style>
+</head>
+<body>
+    <div id="balao" class="balao" onclick="aumenta()"></div>
+
+    <script>
+    var cores = ["red", "green", "blue"];
+    var indexCor = 0;
+
+    function aumenta() {
+        var balao = document.getElementById("balao");
+        var tamanhoAtual = parseInt(window.getComputedStyle(balao).getPropertyValue("width"));
+        var corAtual = balao.style.backgroundColor;
+
+        if (tamanhoAtual < 420) {
+            tamanhoAtual += 10;
+            balao.style.width = tamanhoAtual + "px";
+            balao.style.height = tamanhoAtual + "px";
+        } else {
+            tamanhoAtual = 200;
+            balao.style.width = tamanhoAtual + "px";
+            balao.style.height = tamanhoAtual + "px";
+        }
+
+        indexCor = (indexCor + 1) % cores.length;
+        balao.style.backgroundColor = cores[indexCor];
+    }
+
+    function encolherBalao() {
+        var balao = document.getElementById("balao");
+        var tamanhoAtual = parseInt(window.getComputedStyle(balao).getPropertyValue("width"));
+
+        if (tamanhoAtual > 200) {
+            tamanhoAtual -= 5;
+            balao.style.width = tamanhoAtual + "px";
+            balao.style.height = tamanhoAtual + "px";
+        } else {
+            tamanhoAtual = 420;
+            balao.style.width = tamanhoAtual + "px";
+            balao.style.height = tamanhoAtual + "px";
+        }
+
+        indexCor = (indexCor - 1 + cores.length) % cores.length;
+        balao.style.backgroundColor = cores[indexCor];
+    }
+
+    document.getElementById("balao").addEventListener("mouseleave", function() {
+        encolherBalao();
+    });
+    </script>
+</body>
+</html>
