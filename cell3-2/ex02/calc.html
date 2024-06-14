@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <form id="calculatorForm">
+        <input type="text" id="leftOperand" placeholder="Left Operand">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="rightOperand" placeholder="Right Operand">
+        <input type="submit" value="Try me!">
+    </form>
+    <script>
+        // Função para exibir um alerta a cada 30 segundos
+function showAlert() {
+    alert("Please, use me...");
+}
+
+// Definindo a função para executar o cálculo
+function calculate() {
+    // Obtendo os valores dos campos de entrada
+    var leftOperand = parseInt(document.getElementById('leftOperand').value);
+    var rightOperand = parseInt(document.getElementById('rightOperand').value);
+    var operator = document.getElementById('operator').value;
+    var result;
+
+    // Verificando se os valores são números inteiros positivos
+    if (isNaN(leftOperand) || isNaN(rightOperand) || leftOperand < 0 || rightOperand < 0) {
+        alert("Error :(");
+        return;
+    }
+
+    // Executando a operação selecionada
+    switch (operator) {
+        case '+':
+            result = leftOperand + rightOperand;
+            break;
+        case '-':
+            result = leftOperand - rightOperand;
+            break;
+        case '*':
+            result = leftOperand * rightOperand;
+            break;
+        case '/':
+            // Verificando divisão por zero
+            if (rightOperand === 0) {
+                alert("It's over 9000!");
+                return;
+            }
+            result = leftOperand / rightOperand;
+            break;
+        case '%':
+            // Verificando módulo por zero
+            if (rightOperand === 0) {
+                alert("It's over 9000!");
+                return;
+            }
+            result = leftOperand % rightOperand;
+            break;
+        default:
+            alert("Invalid operator");
+            return;
+    }
+
+    // Exibindo o resultado no console e em um alerta
+    console.log("Result:", result);
+    alert("Result: " + result);
+}
+
+// Associando a função de cálculo ao evento de envio do formulário
+document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário padrão
+    calculate();
+});
+
+// Exibindo o alerta a cada 30 segundos
+setInterval(showAlert, 30000);
+    </script>
+</body>
+</html>
